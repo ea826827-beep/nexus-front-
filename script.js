@@ -14,7 +14,7 @@
 // উদাহরণ: https://your-backend.example.com
 // শেষে /chat বা অন্য API path লিখবে না।
 
-const API_BASE_URL = "YOUR_BACKEND_URL";
+const API_BASE_URL = "https://nexus-ai-2fuj.onrender.com;
 
 const CHAT_ENDPOINT = "/chat";
 const HEALTH_ENDPOINT = "/health";
