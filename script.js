@@ -5,7 +5,7 @@
    ========================================= */
 
 // তোমার Render backend-এর সঠিক URL বসানো আছে।
-const API_BASE = "https://nexus-ai-4-irgz.onrender.com";
+const API_BASE = "https://nexus-ai-11-qb1k.onrender.com";
 
 const CONFIG = {
   chatEndpoint: "/chat",
