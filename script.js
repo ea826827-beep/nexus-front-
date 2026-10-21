@@ -11,7 +11,7 @@
 
 const NEXUS_CONFIG = window.NEXUS_CONFIG || {};
 
-const API_BASE = "https://nexus-ai-11-irgz.onrender.com";
+const API_BASE = "https://nexus-ai-10-dncx.onrender.com";
 
 const ENDPOINTS = {
     chat: NEXUS_CONFIG.endpoints?.chat || "/chat",
