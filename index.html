@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101014">
+
+    <title>NEXUS AI — Your Intelligent Assistant</title>
+
+    <meta
+        name="description"
+        content="NEXUS AI — Your personal AI assistant for chatting, learning, coding and creativity."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================
+         APPLICATION ROOT
+    ====================================== -->
+
+    <div class="app" id="app">
+
+        <!-- =================================
+             MOBILE OVERLAY
+        ================================== -->
+
+        <div
+            class="mobile-overlay"
+            id="mobileOverlay"
+            aria-hidden="true"
+        ></div>
+
+
+        <!-- =================================
+             SIDEBAR
+        ================================== -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+            aria-label="Main navigation"
+        >
+
+            <!-- Brand -->
+
+            <div class="sidebar-header">
+
+                <a
+                    class="brand"
+                    href="/"
+                    aria-label="NEXUS AI home"
+                >
+
+                    <div class="brand-logo">
+                        <span>N</span>
+                    </div>
+
+                    <div class="brand-text">
+                        <span class="brand-name">NEXUS</span>
+                        <span class="brand-subtitle">ARTIFICIAL INTELLIGENCE</span>
+                    </div>
+
+                </a>
+
+                <button
+                    class="icon-button sidebar-close"
+                    id="sidebarClose"
+                    type="button"
+                    aria-label="Close sidebar"
+                >
+                    <span>✕</span>
+                </button>
+
+            </div>
+
+
+            <!-- New Chat -->
+
+            <div class="sidebar-actions">
+
+                <button
+                    class="new-chat-button"
+                    id="newChatButton"
+                    type="button"
+                >
+
+                    <span class="new-chat-icon">＋</span>
+
+                    <span>New chat</span>
+
+                    <span class="new-chat-shortcut">⌘ K</span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="sidebar-search">
+
+                <label
+                    class="search-box"
+                    for="conversationSearch"
+                >
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        type="search"
+                        id="conversationSearch"
+                        placeholder="Search conversations"
+                        autocomplete="off"
+                    >
+
+                    <span class="search-shortcut">/</span>
+
+                </label>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="sidebar-navigation">
+
+                <div class="navigation-group">
+
+                    <p class="navigation-heading">
+                        WORKSPACE
+                    </p>
+
+                    <button
+                        class="navigation-item active"
+                        type="button"
+                        data-view="chat"
+                    >
+
+                        <span class="navigation-icon">◈</span>
+
+                        <span>AI Chat</span>
+
+                        <span class="navigation-badge">AI</span>
+
+                    </button>
+
+                    <button
+                        class="navigation-item"
+                        type="button"
+                        data-view="explore"
+                    >
+
+                        <span class="navigation-icon">⌘</span>
+
+                        <span>Explore AI</span>
+
+                    </button>
+
+                    <button
+                        class="navigation-item"
+                        type="button"
+                        data-view="images"
+                    >
+
+                        <span class="navigation-icon">▧</span>
+
+                        <span>Image Studio</span>
+
+                        <span class="navigation-new">NEW</span>
+
+                    </button>
+
+                    <button
+                        class="navigation-item"
+                        type="button"
+                        data-view="files"
+                    >
+
+                        <span class="navigation-icon">▤</span>
+
+                        <span>My files</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Recent Conversations -->
+
+                <div class="navigation-group recent-group">
+
+                    <div class="navigation-heading-row">
+
+                        <p class="navigation-heading">
+                            RECENTS
+                        </p>
+
+                        <button
+                            class="small-icon-button"
+                            id="clearHistoryButton"
+                            type="button"
+                            title="Clear local history"
+                            aria-label="Clear local history"
+                        >
+                            ⋯
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="conversation-list"
+                        id="conversationList"
+                    >
+
+                        <div class="empty-history">
+                            <span class="empty-history-icon">◷</span>
+                            <span>Your conversations appear here.</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+
+            <!-- Sidebar Bottom -->
+
+            <div class="sidebar-bottom">
+
+                <div class="upgrade-card">
+
+                    <div class="upgrade-card-top">
+
+                        <div class="upgrade-icon">
+                            ✦
+                        </div>
+
+                        <span class="upgrade-label">
+                            NEXUS
+                        </span>
+
+                    </div>
+
+                    <h3>Explore your ideas</h3>
+
+                    <p>
+                        Use NEXUS to learn, create and solve problems.
+                    </p>
+
+                    <button
+                        class="upgrade-button"
+                        id="exploreButton"
+                        type="button"
+                    >
+                        Explore features
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+
+                <!-- User Profile -->
+
+                <div class="user-profile" id="userProfile">
+
+                    <button
+                        class="profile-button"
+                        id="profileButton"
+                        type="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+
+                        <div class="avatar" id="userAvatar">
+                            E
+                        </div>
+
+                        <div class="profile-information">
+
+                            <span
+                                class="profile-name"
+                                id="profileName"
+                            >
+                                Guest User
+                            </span>
+
+                            <span class="profile-plan">
+                                Free plan
+                            </span>
+
+                        </div>
+
+                        <span class="profile-menu-icon">
+                            ⋯
+                        </span>
+
+                    </button>
+
+
+                    <div
+                        class="profile-dropdown"
+                        id="profileDropdown"
+                        hidden
+                    >
+
+                        <button
+                            type="button"
+                            data-action="login"
+                        >
+                            <span>⇥</span>
+                            Sign in
+                        </button>
+
+                        <button
+                            type="button"
+                            data-action="settings"
+                        >
+                            <span>⚙</span>
+                            Settings
+                        </button>
+
+                        <button
+                            type="button"
+                            data-action="help"
+                        >
+                            <span>?</span>
+                            Help & feedback
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================
+             MAIN APPLICATION
+        ================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================
+                 TOP BAR
+            ================================== -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="icon-button menu-button"
+                        id="menuButton"
+                        type="button"
+                        aria-label="Open sidebar"
+                    >
+                        <span>☰</span>
+                    </button>
+
+                    <div class="mobile-brand">
+
+                        <div class="brand-logo small-logo">
+                            N
+                        </div>
+
+                        <span>NEXUS</span>
+
+                    </div>
+
+                    <div class="model-selector-wrapper">
+
+                        <button
+                            class="model-selector"
+                            id="modelSelector"
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+
+                            <span class="model-indicator"></span>
+
+                            <span
+                                class="model-name"
+                                id="selectedModelName"
+                            >
+                                NEXUS Standard
+                            </span>
+
+                            <span class="model-chevron">⌄</span>
+
+                        </button>
+
+
+                        <div
+                            class="model-dropdown"
+                            id="modelDropdown"
+                            hidden
+                        >
+
+                            <div class="dropdown-heading">
+                                SELECT MODEL
+                            </div>
+
+                            <button
+                                class="model-option selected"
+                                type="button"
+                                data-model="standard"
+                            >
+
+                                <span class="model-option-icon">
+                                    ◈
+                                </span>
+
+                                <span class="model-option-text">
+
+                                    <strong>NEXUS Standard</strong>
+
+                                    <small>
+                                        General-purpose AI assistant
+                                    </small>
+
+                                </span>
+
+                                <span class="model-check">✓</span>
+
+                            </button>
+
+                            <button
+                                class="model-option"
+                                type="button"
+                                data-model="creative"
+                            >
+
+                                <span class="model-option-icon">
+                                    ✧
+                                </span>
+
+                                <span class="model-option-text">
+
+                                    <strong>NEXUS Creative</strong>
+
+                                    <small>
+                                        Creative writing and ideas
+                                    </small>
+
+                                </span>
+
+                                <span class="model-check">✓</span>
+
+                            </button>
+
+                            <button
+                                class="model-option"
+                                type="button"
+                                data-model="coding"
+                            >
+
+                                <span class="model-option-icon">
+                                    &lt;/&gt;
+                                </span>
+
+                                <span class="model-option-text">
+
+                                    <strong>NEXUS Coding</strong>
+
+                                    <small>
+                                        Programming assistance
+                                    </small>
+
+                                </span>
+
+                                <span class="model-check">✓</span>
+
+                            </button>
+
+                            <div class="model-dropdown-footer">
+                                Model availability depends on backend support.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="connection-status">
+
+                        <span
+                            class="connection-dot"
+                            id="connectionDot"
+                        ></span>
+
+                        <span id="connectionText">
+                            Checking...
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="icon-button theme-button"
+                        id="themeButton"
+                        type="button"
+                        aria-label="Toggle theme"
+                        title="Toggle theme"
+                    >
+                        ☼
+                    </button>
+
+                    <button
+                        class="share-button"
+                        id="shareButton"
+                        type="button"
+                    >
+
+                        <span>↗</span>
+
+                        <span>Share</span>
+
+                    </button>
+
+                    <button
+                        class="login-button"
+                        id="loginButton"
+                        type="button"
+                    >
+                        Log in
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================
+                 CHAT PAGE
+            ================================== -->
+
+            <section
+                class="chat-page"
+                id="chatPage"
+                aria-label="AI conversation"
+            >
+
+
+                <!-- Welcome Screen -->
+
+                <div
+                    class="welcome-screen"
+                    id="welcomeScreen"
+                >
+
+                    <div class="welcome-decoration decoration-one"></div>
+                    <div class="welcome-decoration decoration-two"></div>
+
+                    <div class="welcome-content">
+
+                        <div class="welcome-badge">
+
+                            <span class="welcome-badge-icon">✦</span>
+
+                            <span>
+                                YOUR PERSONAL AI WORKSPACE
+                            </span>
+
+                        </div>
+
+
+                        <div class="welcome-logo">
+                            <span>N</span>
+                            <div class="welcome-logo-orbit"></div>
+                        </div>
+
+
+                        <h1 class="welcome-title">
+
+                            Think bigger.
+
+                            <span>Create with NEXUS.</span>
+
+                        </h1>
+
+
+                        <p class="welcome-description">
+                            তোমার AI সঙ্গী—শেখা, কোডিং, লেখা,
+                            সমস্যা সমাধান এবং নতুন আইডিয়া তৈরির জন্য।
+                        </p>
+
+
+                        <!-- Prompt Suggestions -->
+
+                        <div class="suggestion-grid">
+
+                            <button
+                                class="suggestion-card"
+                                type="button"
+                                data-prompt="আমাকে AI সহজ বাংলায় শেখাও। প্রথম Lesson থেকে শুরু করো।"
+                            >
+
+                                <span class="suggestion-icon learning-icon">
+                                    ✦
+                                </span>
+
+                                <span class="suggestion-text">
+
+                                    <strong>Learn something</strong>
+
+                                    <small>
+                                        নতুন কিছু শেখা শুরু করো
+                                    </small>
+
+                                </span>
+
+                                <span class="suggestion-arrow">↗</span>
+
+                            </button>
+
+
+                            <button
+                                class="suggestion-card"
+                                type="button"
+                                data-prompt="আমাকে Python দিয়ে একটি beginner-friendly project তৈরি করতে শেখাও।"
+                            >
+
+                                <span class="suggestion-icon coding-icon">
+                                    &lt;/&gt;
+                                </span>
+
+                                <span class="suggestion-text">
+
+                                    <strong>Write code</strong>
+
+                                    <small>
+                                        কোড লেখো ও বুঝে নাও
+                                    </small>
+
+                                </span>
+
+                                <span class="suggestion-arrow">↗</span>
+
+                            </button>
+
+
+                            <button
+                                class="suggestion-card"
+                                type="button"
+                                data-prompt="একটি নতুন AI project-এর জন্য ১০টি বাস্তবসম্মত idea দাও।"
+                            >
+
+                                <span class="suggestion-icon creative-icon">
+                                    ◈
+                                </span>
+
+                                <span class="suggestion-text">
+
+                                    <strong>Explore ideas</strong>
+
+                                    <small>
+                                        নতুন project idea খুঁজে নাও
+                                    </small>
+
+                                </span>
+
+                                <span class="suggestion-arrow">↗</span>
+
+                            </button>
+
+
+                            <button
+                                class="suggestion-card"
+                                type="button"
+                                data-prompt="আমার জন্য একটি cybersecurity learning roadmap বাংলায় তৈরি করো।"
+                            >
+
+                                <span class="suggestion-icon security-icon">
+                                    ⛨
+                                </span>
+
+                                <span class="suggestion-text">
+
+                                    <strong>Cybersecurity</strong>
+
+                                    <small>
+                                        নিরাপত্তা শেখা শুরু করো
+                                    </small>
+
+                                </span>
+
+                                <span class="suggestion-arrow">↗</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Messages Container -->
+
+                <div
+                    class="messages-container"
+                    id="messagesContainer"
+                    aria-live="polite"
+                    aria-relevant="additions"
+                >
+
+                    <div
+                        class="messages-list"
+                        id="messagesList"
+                    ></div>
+
+                </div>
+
+
+                <!-- =================================
+                     COMPOSER
+                ================================== -->
+
+                <div class="composer-area">
+
+                    <div class="composer-wrapper">
+
+
+                        <!-- Attachment Preview -->
+
+                        <div
+                            class="attachment-preview"
+                            id="attachmentPreview"
+                            hidden
+                        ></div>
+
+
+                        <!-- Composer Form -->
+
+                        <form
+                            class="composer"
+                            id="chatForm"
+                            autocomplete="off"
+                        >
+
+                            <label
+                                class="composer-upload"
+                                for="fileInput"
+                                title="Attach a file"
+                            >
+                                <span>＋</span>
+                            </label>
+
+                            <input
+                                type="file"
+                                id="fileInput"
+                                accept=".pdf,.txt,.md,.csv,.json,.png,.jpg,.jpeg,.webp"
+                                multiple
+                                hidden
+                            >
+
+
+                            <div class="composer-input-area">
+
+                                <textarea
+                                    id="messageInput"
+                                    name="message"
+                                    rows="1"
+                                    maxlength="12000"
+                                    placeholder="Message NEXUS..."
+                                    aria-label="Write your message"
+                                    required
+                                ></textarea>
+
+
+                                <div class="composer-tools">
+
+                                    <div class="composer-tools-left">
+
+                                        <button
+                                            class="tool-button"
+                                            id="voiceButton"
+                                            type="button"
+                                            title="Voice input"
+                                            aria-label="Voice input"
+                                        >
+
+                                            <span>🎙</span>
+
+                                            <span class="tool-label">
+                                                Voice
+                                            </span>
+
+                                        </button>
+
+
+                                        <button
+                                            class="tool-button"
+                                            id="imageButton"
+                                            type="button"
+                                            title="Generate an image"
+                                        >
+
+                                            <span>▧</span>
+
+                                            <span class="tool-label">
+                                                Create image
+                                            </span>
+
+                                        </button>
+
+
+                                        <button
+                                            class="tool-button"
+                                            id="uploadButton"
+                                            type="button"
+                                            title="Upload files"
+                                        >
+
+                                            <span>⌁</span>
+
+                                            <span class="tool-label">
+                                                Attach
+                                            </span>
+
+                                        </button>
+
+                                    </div>
+
+
+                                    <div class="composer-tools-right">
+
+                                        <span
+                                            class="character-counter"
+                                            id="characterCounter"
+                                        >
+                                            0 / 12000
+                                        </span>
+
+
+                                        <button
+                                            class="send-button"
+                                            id="sendButton"
+                                            type="submit"
+                                            aria-label="Send message"
+                                            disabled
+                                        >
+                                            <span>↑</span>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+
+                        <div class="composer-disclaimer">
+
+                            <span class="disclaimer-icon">ⓘ</span>
+
+                            <span>
+                                NEXUS AI ভুল করতে পারে।
+                                গুরুত্বপূর্ণ তথ্য যাচাই করে নাও।
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 IMAGE STUDIO PAGE
+            ================================== -->
+
+            <section
+                class="secondary-page"
+                id="imageStudioPage"
+                hidden
+            >
+
+                <div class="secondary-page-content">
+
+                    <div class="page-eyebrow">
+                        NEXUS CREATIVE STUDIO
+                    </div>
+
+                    <h1>Imagine anything.</h1>
+
+                    <p>
+                        তোমার কল্পনাকে ছবিতে রূপ দেওয়ার জন্য
+                        একটি prompt লিখো।
+                    </p>
+
+
+                    <form
+                        class="image-generation-form"
+                        id="imageGenerationForm"
+                    >
+
+                        <label for="imagePrompt">
+                            Describe your image
+                        </label>
+
+                        <textarea
+                            id="imagePrompt"
+                            rows="4"
+                            maxlength="2000"
+                            placeholder="A futuristic AI city at night..."
+                            required
+                        ></textarea>
+
+
+                        <div class="image-form-controls">
+
+                            <label for="imageStyle">
+                                Image style
+                            </label>
+
+                            <select id="imageStyle">
+
+                                <option value="realistic">
+                                    Realistic
+                                </option>
+
+                                <option value="digital-art">
+                                    Digital art
+                                </option>
+
+                                <option value="anime">
+                                    Anime
+                                </option>
+
+                                <option value="cinematic">
+                                    Cinematic
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            type="submit"
+                            id="generateImageButton"
+                        >
+                            <span>✦</span>
+                            Generate image
+                        </button>
+
+                    </form>
+
+
+                    <div
+                        class="image-generation-result"
+                        id="imageGenerationResult"
+                        aria-live="polite"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 EXPLORE PAGE
+            ================================== -->
+
+            <section
+                class="secondary-page"
+                id="explorePage"
+                hidden
+            >
+
+                <div class="secondary-page-content">
+
+                    <div class="page-eyebrow">
+                        DISCOVER NEXUS
+                    </div>
+
+                    <h1>Explore possibilities.</h1>
+
+                    <p>
+                        নিজের কাজের ধরন অনুযায়ী একটি
+                        AI workflow বেছে নাও।
+                    </p>
+
+
+                    <div class="explore-grid">
+
+                        <button
+                            class="explore-card"
+                            type="button"
+                            data-prompt="আমাকে একজন ব্যক্তিগত শিক্ষক হিসেবে পড়াও।"
+                        >
+
+                            <span class="explore-card-icon">✦</span>
+
+                            <strong>AI Tutor</strong>
+
+                            <span>
+                                ধাপে ধাপে নতুন বিষয় শেখো।
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="explore-card"
+                            type="button"
+                            data-prompt="আমার Python code review করো এবং ভুলগুলো বাংলায় বুঝিয়ে দাও।"
+                        >
+
+                            <span class="explore-card-icon">⌘</span>
+
+                            <strong>Code Assistant</strong>
+
+                            <span>
+                                কোড বোঝো ও সমস্যা সমাধান করো।
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="explore-card"
+                            type="button"
+                            data-prompt="একটি professional project plan তৈরি করো।"
+                        >
+
+                            <span class="explore-card-icon">◈</span>
+
+                            <strong>Project Planner</strong>
+
+                            <span>
+                                নিজের project পরিকল্পনা করো।
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="explore-card"
+                            type="button"
+                            data-prompt="আমাকে নিরাপদ ও অনুমোদিত cybersecurity lab-এ practice করার roadmap দাও।"
+                        >
+
+                            <span class="explore-card-icon">⛨</span>
+
+                            <strong>Security Learning</strong>
+
+                            <span>
+                                অনুমোদিত lab-এ cybersecurity শেখো।
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 FILES PAGE
+            ================================== -->
+
+            <section
+                class="secondary-page"
+                id="filesPage"
+                hidden
+            >
+
+                <div class="secondary-page-content">
+
+                    <div class="page-eyebrow">
+                        YOUR WORKSPACE
+                    </div>
+
+                    <h1>My files.</h1>
+
+                    <p>
+                        এখানে তোমার নির্বাচিত ফাইলের তথ্য
+                        দেখা যাবে।
+                    </p>
+
+
+                    <div
+                        class="file-library"
+                        id="fileLibrary"
+                    >
+
+                        <div class="file-library-empty">
+
+                            <span>▤</span>
+
+                            <strong>No files selected</strong>
+
+                            <p>
+                                Chat থেকে PDF, text অথবা
+                                supported file attach করো।
+                            </p>
+
+                            <button
+                                class="primary-button"
+                                id="goToChatButton"
+                                type="button"
+                            >
+                                Go to chat
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 FOOTER
+            ================================== -->
+
+            <footer class="app-footer">
+
+                <span>
+                    NEXUS AI
+                </span>
+
+                <span class="footer-separator">•</span>
+
+                <span>
+                    Built for ideas, learning and creativity
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================
+         LOGIN / SIGNUP MODAL
+    ====================================== -->
+
+    <div
+        class="modal-backdrop"
+        id="authModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="authTitle"
+        hidden
+    >
+
+        <div class="modal auth-modal">
+
+            <div class="modal-header">
+
+                <div class="modal-brand">
+
+                    <div class="brand-logo small-logo">
+                        N
+                    </div>
+
+                    <span>NEXUS</span>
+
+                </div>
+
+
+                <button
+                    class="icon-button modal-close"
+                    type="button"
+                    data-close-modal="authModal"
+                    aria-label="Close login dialog"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="auth-content">
+
+                <div class="auth-icon">
+                    ◈
+                </div>
+
+                <h2 id="authTitle">
+                    Welcome to NEXUS
+                </h2>
+
+                <p id="authDescription">
+                    Sign in to access your account.
+                </p>
+
+
+                <div class="auth-tabs">
+
+                    <button
+                        class="auth-tab active"
+                        type="button"
+                        data-auth-mode="login"
+                    >
+                        Log in
+                    </button>
+
+                    <button
+                        class="auth-tab"
+                        type="button"
+                        data-auth-mode="signup"
+                    >
+                        Sign up
+                    </button>
+
+                </div>
+
+
+                <form id="authForm">
+
+                    <div
+                        class="form-field"
+                        id="authNameField"
+                        hidden
+                    >
+
+                        <label for="authName">
+                            Your name
+                        </label>
+
+                        <input
+                            id="authName"
+                            name="name"
+                            type="text"
+                            maxlength="100"
+                            placeholder="Enter your name"
+                            autocomplete="name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="authEmail">
+                            Email address
+                        </label>
+
+                        <input
+                            id="authEmail"
+                            name="email"
+                            type="email"
+                            maxlength="254"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="authPassword">
+                            Password
+                        </label>
+
+                        <input
+                            id="authPassword"
+                            name="password"
+                            type="password"
+                            minlength="8"
+                            maxlength="128"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="auth-error"
+                        id="authError"
+                        role="alert"
+                        hidden
+                    ></div>
+
+
+                    <button
+                        class="primary-button auth-submit"
+                        type="submit"
+                        id="authSubmitButton"
+                    >
+                        Continue
+                    </button>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+
+                <button
+                    class="google-login-button"
+                    id="googleLoginButton"
+                    type="button"
+                >
+
+                    <span class="google-icon">G</span>
+
+                    Continue with Google
+
+                </button>
+
+
+                <p class="auth-terms">
+                    By continuing, you agree to the applicable
+                    terms and privacy policy.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         SETTINGS MODAL
+    ====================================== -->
+
+    <div
+        class="modal-backdrop"
+        id="settingsModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="settingsTitle"
+        hidden
+    >
+
+        <div class="modal settings-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="settingsTitle">
+                        Settings
+                    </h2>
+
+                    <p>
+                        Customize your NEXUS experience.
+                    </p>
+                </div>
+
+                <button
+                    class="icon-button modal-close"
+                    type="button"
+                    data-close-modal="settingsModal"
+                    aria-label="Close settings"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="settings-content">
+
+                <div class="settings-section">
+
+                    <h3>Appearance</h3>
+
+                    <p>
+                        Choose how NEXUS looks on your device.
+                    </p>
+
+                    <div class="settings-row">
+
+                        <div>
+                            <strong>Dark mode</strong>
+
+                            <small>
+                                Use the dark interface.
+                            </small>
+                        </div>
+
+                        <button
+                            class="toggle-button"
+                            id="settingsThemeToggle"
+                            type="button"
+                            role="switch"
+                            aria-checked="true"
+                        >
+                            <span></span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-section">
+
+                    <h3>Conversation</h3>
+
+                    <p>
+                        Manage your locally stored chat history.
+                    </p>
+
+                    <button
+                        class="secondary-button"
+                        id="settingsClearHistory"
+                        type="button"
+                    >
+                        Clear conversation history
+                    </button>
+
+                </div>
+
+
+                <div class="settings-section">
+
+                    <h3>About</h3>
+
+                    <div class="settings-row">
+
+                        <div>
+                            <strong>NEXUS AI</strong>
+
+                            <small>
+                                Personal AI assistant interface
+                            </small>
+                        </div>
+
+                        <span class="version-badge">
+                            v1.0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         TOAST NOTIFICATIONS
+    ====================================== -->
+
+    <div
+        class="toast-container"
+        id="toastContainer"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+
+
+    <!-- =====================================
+         LOADING OVERLAY
+    ====================================== -->
+
+    <div
+        class="loading-overlay"
+        id="loadingOverlay"
+        hidden
+    >
+
+        <div class="loading-card">
+
+            <div class="loading-spinner"></div>
+
+            <strong id="loadingTitle">
+                NEXUS is working...
+            </strong>
+
+            <p id="loadingDescription">
+                Please wait a moment.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         APPLICATION CONFIGURATION
+    ====================================== -->
+
+    <script>
+        window.NEXUS_CONFIG = {
+            appName: "NEXUS AI",
+
+            endpoints: {
+                chat: "/chat",
+                upload: "/upload",
+                health: "/health",
+                image: "/generate-image",
+
+                login: "/api/login",
+                signup: "/api/signup",
+                logout: "/api/logout",
+                me: "/api/me"
+            },
+
+            limits: {
+                maxMessageLength: 12000,
+                maxFiles: 5,
+                maxFileSize: 10 * 1024 * 1024
+            },
+
+            features: {
+                chat: true,
+                fileUpload: true,
+                voiceInput: true,
+                imageGeneration: true,
+                accountAuthentication: true
+            }
+        };
+    </script>
+
+
+    <!-- Main JavaScript -->
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
